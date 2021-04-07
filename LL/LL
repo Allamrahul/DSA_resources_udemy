@@ -1,0 +1,81 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+
+//my implementation create LL
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct Node 
+{
+	int data;
+	struct Node* next;
+}*first = NULL;
+
+
+void LL_gen(int A[], int n){
+    
+    struct Node* prev;
+    struct Node* t;
+    int i;
+	
+	first = (struct Node *) malloc(sizeof(struct Node));
+	first->data = A[0];
+	first->next = NULL;
+	prev = first;
+	
+	for(i=1; i<n; i++){
+	    
+	    t = (struct Node *) malloc(sizeof(struct Node));
+	    t->data = A[i];
+	    t->next = NULL;
+	    prev->next = t;
+	    prev = t;
+	    
+	}
+	
+}
+
+void Display(struct Node* t2){
+    
+//     while(t2 != NULL){
+// 		printf("%d ->", t2->data);
+// 		t2 = t2->next; 
+// 	}
+
+    if(t2 == NULL) return;  // recursive implementation
+    printf("%d ->", t2->data);
+    Display(t2->next);
+    
+}
+
+void Display_reverse(struct Node* t2){
+
+    if(t2 == NULL) return;
+    Display(t2->next);
+    printf("%d ->", t2->data);
+    
+    
+}
+
+int main(){
+	
+	int A[] = {3,5,7,10,15};
+	struct Node* t2;
+	LL_gen(A,5);
+	t2 = first;
+	while(t2 != NULL){
+		printf("%d ->", t2->data);
+		t2 = t2->next; 
+	}
+	 
+	return 0;
+} 
